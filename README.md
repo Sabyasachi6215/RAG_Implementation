@@ -77,6 +77,47 @@ Lower ranks (higher positions) get more weight.
 
 Documents that appear in both sparse and dense results get boosted.
 
+ How does RRF work?
+Let’s say you have two ranked lists (BM25 and Dense):
+
+BM25 Top-5:
+
+scss
+Copy
+Edit
+A (rank 1), B (2), C (3), D (4), E (5)
+Dense Top-5:
+
+scss
+Copy
+Edit
+C (1), A (2), F (3), G (4), D (5)
+Now we apply RRF with a formula:
+
+java
+Copy
+Edit
+RRF Score = ∑ [1 / (k + rank)]
+Where:
+
+rank is the position of the document in each list
+
+k is a constant (typically 60, to avoid division by zero)
+
+Example:
+For document A:
+
+Rank 1 in BM25 → 1 / (60 + 1) = 1/61 ≈ 0.016
+
+Rank 2 in Dense → 1 / (60 + 2) = 1/62 ≈ 0.0161
+
+Total RRF score = ~0.0321
+
+Do this for all documents in both lists.
+
+✅ Final merged rank:
+Sort documents by their total RRF scores in descending order.
+
 🧠 Bi-encoder Models
 Used in dense retrieval: Two separate encoders—one for queries, one for documents.
 
@@ -96,9 +137,7 @@ Enables retrieval based on meaning, not just matching keywords.
 Recall measures how many relevant documents your system retrieved, out of all the relevant documents that exist in the dataset.
 
 💡 Formula:
-mathematica
-Copy
-Edit
+
 Recall = (Number of Relevant Documents Retrieved) / (Total Number of Relevant Documents)
 ✅ In RAG context:
 In a QA system, recall answers:
