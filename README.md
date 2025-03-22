@@ -55,6 +55,8 @@ Sparse: Traditional keyword-based search (e.g., BM25)
 
 Dense: Semantic search using vector embeddings (bi-encoders)
 
+![alt text](image-2.png)
+
 Why hybrid? Each method captures different strengths—keywords work well for exact matches, dense works better for semantic similarity.
 
 Example:
@@ -69,9 +71,7 @@ It boosts documents that rank well across multiple rankings, even if not ranked 
 
 How it works (briefly):
 
-java
-Copy
-Edit
+
 RRF score = 1 / (k + rank)
 Lower ranks (higher positions) get more weight.
 
