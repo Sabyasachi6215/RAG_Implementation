@@ -92,11 +92,6 @@ Enables retrieval based on meaning, not just matching keywords.
 
 
 
-You said:
-what is recall in this case? What are the things to evaluate the RAG performance
-ChatGPT said:
-Great questions! These are crucial concepts when evaluating retrieval systems or Retrieval-Augmented Generation (RAG) models. Let’s go through them clearly and concisely:
-
 📈 What is Recall in Retrieval?
 Recall measures how many relevant documents your system retrieved, out of all the relevant documents that exist in the dataset.
 
